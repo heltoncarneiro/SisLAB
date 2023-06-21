@@ -59,7 +59,7 @@ public class Cliente {
 		this.historicoRequisicoes = new ArrayList<>();;
 	}
 	public String ImprimirCliente() {
-		return "nome: "+ getNome()+"\nData de nascimento:" + getDataNascimento()+"\n cpf"
+		return "nome: "+ getNome()+"\nData de nascimento:" + getDataNascimento()+"\n CPF:" + getNome();
 	}
 	
 
