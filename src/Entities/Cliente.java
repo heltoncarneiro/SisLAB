@@ -1,5 +1,10 @@
 package Entities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -51,6 +56,18 @@ public class Cliente {
 			}
 		}
 	}
+	public int idade() {
+		LocalDate DataAtual = LocalDate.now();
+		if(dataNascimento != null) {
+			Period periodo = Period.between(getDataNascimento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), DataAtual);
+			return periodo.getYears();
+		}else {
+			return 0;
+		}
+	}
+	private static final DateFormat createFormat() {
+	    return new SimpleDateFormat("dd/MM/yyyy");
+	}
 	public Cliente(String nome, Date dataNascimento, String endereço, String cpf, ArrayList<Requisicao> históricoRequisições) {
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
@@ -59,8 +76,10 @@ public class Cliente {
 		this.historicoRequisicoes = new ArrayList<>();;
 	}
 	public String ImprimirCliente() {
-		return "nome: "+ getNome()+"\nData de nascimento:" + getDataNascimento()+"\n CPF:" + getNome();
+		if(dataNascimento != null) {
+		return "Nome: "+ getNome()+"\nData de nascimento: " + createFormat().format(getDataNascimento())+"\nIdade: " + idade()+" Anos, CPF: " + getCpf();
+		}
+		return	"Nome: "+ getNome()+"\nCPF: " + getCpf();
 	}
-	
 
 }

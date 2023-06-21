@@ -20,7 +20,7 @@ public class Medico {
 		this.numCrm = numCrm;
 	}
 	public String imprimirMedico() {
-		return "Medico: " + getNome() + ", Numero CRM: " + getNumCrm()+ ".\n";
+		return "Medico: " + getNome() + ", Numero CRM: " + getNumCrm()+ "\n";
 	}
 	
 }

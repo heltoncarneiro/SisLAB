@@ -1,5 +1,6 @@
 package Entities;
 
-public class Exame {
-
+public interface Exame {
+	public String ImprimirResultado();
 }
+	
