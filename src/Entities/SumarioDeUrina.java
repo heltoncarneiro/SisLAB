@@ -6,7 +6,7 @@ public final class SumarioDeUrina implements Exame {
 	private String proteina = "Ausente";
 	private String hemacias = "Ausente";
 	private String glicose = "Ausente";
-	private String leucócitos = "Ausente";
+	private String leucocitos = "Ausente";
 	private String cetonas = "Ausente";
 	private String urobilinogenio = "Ausente";
 	private String bilirrubina  = "Ausente";
@@ -79,12 +79,12 @@ public final class SumarioDeUrina implements Exame {
 		this.glicose = glicose;
 	}
 
-	public String getLeucócitos() {
-		return leucócitos;
+	public String getleucocitos() {
+		return leucocitos;
 	}
 
-	public void setLeucócitos(String leucócitos) {
-		this.leucócitos = leucócitos;
+	public void setleucocitos(String leucocitos) {
+		this.leucocitos = leucocitos;
 	}
 
 	public String getCetonas() {
@@ -124,7 +124,7 @@ public final class SumarioDeUrina implements Exame {
 	}
 
 	public SumarioDeUrina(String densidade, String ph, String proteina, String hemacias, String glicose,
-			String leucócitos, String cetonas, String urobilinogenio, String bilirrubina, String nitrito
+			String leucocitos, String cetonas, String urobilinogenio, String bilirrubina, String nitrito
 			, String piocitos, String celulasEpiteliais, String bacterias) {
 		if(densidade != null) {
 		this.densidade = densidade;
@@ -141,8 +141,8 @@ public final class SumarioDeUrina implements Exame {
 		if(glicose != null) {
 		this.glicose = glicose;
 		}
-		if(leucócitos!= null) {
-		this.leucócitos = leucócitos;
+		if(leucocitos!= null) {
+		this.leucocitos = leucocitos;
 		}
 		if(cetonas!= null) {
 		this.cetonas = cetonas;
@@ -169,16 +169,16 @@ public final class SumarioDeUrina implements Exame {
 
 	@Override
 	public String exibirNome() {
-		return "Sumário de Urina";
+		return "Sumario de Urina";
 	}
 
 	public String nomeImprimir() {
-		int val = 40 - (int)"Sumário de Urina".length()/2;
-		String espaço = "";
+		int val = 40 - (int)"Sumario de Urina".length()/2;
+		String espaco = "";
 		for (int i = 0; i< val; i++) {
-			espaço += " ";
+			espaco += " ";
 		}
-		return espaço + "Sumário de Urina";
+		return espaco + "Sumario de Urina";
 	}
 	private String imprimirExameFisico() {
 		String [] nomes =  {"Proteina:","Hemoglobina:"}; 
@@ -202,10 +202,10 @@ public final class SumarioDeUrina implements Exame {
 		return imprimir;
 	}
 	private String imprimirExameQuimico() {
-		String [] nomes = {"Proteina:","Hemacias:","Glicose:","Leucócitos:","Cetonas:","Urobilinogenio:","Bilirrubina:","Nitrito:"};
+		String [] nomes = {"Proteina:","Hemacias:","Glicose:","leucocitos:","Cetonas:","Urobilinogenio:","Bilirrubina:","Nitrito:"};
 		String [] valorReferecia = {"Ausente","Ausente","Ausente","Ausente","Ausente","Ausente","Normal","Negativo"};
-		String [] resultado = {getProteina(),getHemacias(),getGlicose(),getLeucócitos(),getCetonas(),getUrobilinogenio(),getBilirrubina(),getNitrito()};
-		String espaco1; String espaco2; String imprimir = "\nEXAME QUÍMICO:\n\n";
+		String [] resultado = {getProteina(),getHemacias(),getGlicose(),getleucocitos(),getCetonas(),getUrobilinogenio(),getBilirrubina(),getNitrito()};
+		String espaco1; String espaco2; String imprimir = "\nEXAME QUÃ�MICO:\n\n";
 		for(int i = 0; i<8; i++) {
 			espaco1 = "";
 			espaco2 = "";
@@ -222,8 +222,8 @@ public final class SumarioDeUrina implements Exame {
 		return imprimir;
 	}
 	private String imprimirSedimentoscopia() {
-		String [] nomes =  {"Piócitos:","Celulas Epiteliais:" , "Bactérias:"}; 
-		String [] valorReferecia = {"<5 Piócitos","Raras","Não observado"};
+		String [] nomes =  {"Piocitos:","Celulas Epiteliais:" , "Bacterias:"}; 
+		String [] valorReferecia = {"<5 Piocitos","Raras","Não observado"};
 		String [] resultado = {getPiocitos(),getCelulasEpiteliais(),getBacterias()};
 		String espaco1; String espaco2; String imprimir = "\nSEDIMENTOSCOPIA:\n\n";
 		int valRound;int valFloor ;

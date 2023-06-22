@@ -11,7 +11,7 @@ import java.util.Date;
 public class Cliente {
 	private String nome;
 	private Date dataNascimento;
-	private String endereço;
+	private String endereco;
 	private String cpf;
 	private ArrayList<Requisicao> historicoRequisicoes;
 	public String getNome() {
@@ -32,11 +32,11 @@ public class Cliente {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public String getEndereço() {
-		return endereço;
+	public String getendereco() {
+		return endereco;
 	}
-	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+	public void setendereco(String endereco) {
+		this.endereco = endereco;
 	}
 	public ArrayList<Requisicao> getHistoricoRequisicoes() {
 		return historicoRequisicoes;
@@ -68,10 +68,10 @@ public class Cliente {
 	private static final DateFormat createFormat() {
 	    return new SimpleDateFormat("dd/MM/yyyy");
 	}
-	public Cliente(String nome, Date dataNascimento, String endereço, String cpf) {
+	public Cliente(String nome, Date dataNascimento, String endereco, String cpf) {
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
-		this.endereço = endereço;
+		this.endereco = endereco;
 		this.cpf = cpf;
 	}
 	public String ImprimirCliente() {
