@@ -11,6 +11,7 @@ import Entities.Cliente;
 import Entities.ColesterolTotal;
 import Entities.Exame;
 import Entities.Glicose;
+import Entities.Hemograma;
 import Entities.Medico;
 import Entities.Requisicao;
 import Entities.SumarioDeUrina;
@@ -31,12 +32,13 @@ public class program {
 				numOpcao = menu(sc);
 				switch (numOpcao) {
 				case 1:
-					cadastrasCliente(sc, sdf, clientes);
-					System.out.println(clientes);
+					cadastrarCliente(sc, sdf, clientes);
 					break;
 				case 2:
-					cadastrasMedico(sc, sdf, medicos);
-					System.out.println(medicos);
+					cadastrarMedico(sc, sdf, medicos);
+					break;
+				case 3:
+					cadastraslistaExames(sc);
 					break;
 				}
 			}
@@ -49,17 +51,18 @@ public class program {
 		sc.close();
 	}
 	public static int menu(Scanner sc) {
-		System.out.println("1- Cadastrar cliente"
+		System.out.println("\n\n1- Cadastrar cliente"
 				+ "\n2- Cadastrar medico"
 				+ "\n3- Cadastrar requisição"
 				+ "\n4- Digitar exames"
 				+ "\n5- Imprimir requisição"
+				+ "\n6- Exibir requisições cadastradas"
 				+ "\nEscolha uma opção:");
 		int valreturn = sc.nextInt();
 		sc.nextLine();
 		return valreturn;
 	}
-	public static void cadastrasCliente(Scanner sc , SimpleDateFormat sdf,ArrayList<Cliente> clientes) {
+	public static void cadastrarCliente(Scanner sc , SimpleDateFormat sdf,ArrayList<Cliente> clientes) {
 		try {
 			System.out.println("Qual o nome do cliente:");
 			String nome = sc.nextLine();
@@ -77,11 +80,11 @@ public class program {
 			System.out.println("Formato de data irregular\n\nPressione Qualquer tecla para cadastrar um cliente outra vez\nCaso deseje voltar para o menu digite \"S\"");
 			if(sc.next().toLowerCase().charAt(0) != 's') {
 				sc.nextLine();
-				cadastrasCliente(sc, sdf, clientes);
+				cadastrarCliente(sc, sdf, clientes);
 			}
 		}
 	}
-	public static void cadastrasMedico(Scanner sc , SimpleDateFormat sdf,ArrayList<Medico> medicos) {
+	public static void cadastrarMedico(Scanner sc , SimpleDateFormat sdf,ArrayList<Medico> medicos) {
 		try {
 			System.out.println("Qual o nome do medico:");
 			String nome = sc.nextLine();
@@ -93,9 +96,115 @@ public class program {
 			System.out.println("Erro\n\nPressione Qualquer tecla para cadastrar um medico outra vez\nCaso deseje voltar para o menu digite \"S\"");
 			if(sc.next().toLowerCase().charAt(0) != 's') {
 				sc.nextLine();
-				cadastrasMedico(sc, sdf, medicos);
+				cadastrarMedico(sc, sdf, medicos);
 			}
 		}
 
+	}
+	public static void cadastraslistaExames(Scanner sc) {
+		ArrayList<Exame> exames = new ArrayList<>();
+		try {
+			boolean[] jaCadastrou = {false,false,false,false,false};
+			int escolhaExames;
+			while(true) {
+				escolhaExames = menuCadastrarListaExames(sc);
+				switch (escolhaExames) {
+				case 1:
+					if(jaCadastrou[0] == false) {
+						exames.add(new Glicose());
+						jaCadastrou[0] = true;
+					}else {
+						System.out.println("Glicose já foi cadastrada.\n");
+					}
+					break;
+				case 2:
+					if(jaCadastrou[1] == false) {
+						exames.add(new ColesterolTotal());
+						jaCadastrou[1] = true;
+					}else {
+						System.out.println("Colesterol total já foi cadastrada.\n");
+					}
+					break;
+				case 3:
+					if(jaCadastrou[2] == false) {
+						exames.add(new Triglicerideos());
+						jaCadastrou[2] = true;
+					}else {
+						System.out.println("Triglicerídeos já foi cadastrada.\n");
+					}
+					break;
+				case 4:
+					if(jaCadastrou[3] == false) {
+						exames.add(new SumarioDeUrina());
+						jaCadastrou[3] = true;
+					}else {
+						System.out.println("Sumario de Urina já foi cadastrada.\n");
+					}
+					break;
+				case 5:
+					if(jaCadastrou[4] == false) {
+						exames.add(new Hemograma());
+						jaCadastrou[4] = true;
+					}else {
+						System.out.println("Hemograma já foi cadastrada.\n");
+					}
+					break;
+				}
+				cadastrados(jaCadastrou);
+	
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Erro\n\nPressione Qualquer tecla para cadastrar os exames novamente\nCaso deseje voltar para o menu digite \"S\"");
+			if(sc.next().toLowerCase().charAt(0) != 's') {
+				sc.nextLine();
+				cadastraslistaExames(sc);
+			}
+		}
+	}
+	public static void cadastrados(boolean[] jaCadastrou){
+		String imprimir = "[";
+		if(jaCadastrou[0] == true) {
+			if( imprimir.length()>1) {
+				imprimir+=", ";
+			}
+			imprimir += "Glicose";
+		}
+		if(jaCadastrou[1] == true) {
+			if( imprimir.length()>1) {
+				imprimir+=", ";
+			}
+			imprimir += "ColesterolTotal";
+		}
+		if(jaCadastrou[2] == true) {
+			if( imprimir.length()>1) {
+				imprimir+=", ";
+			}
+			imprimir += "Trigicerídes";
+		}
+		if(jaCadastrou[3] == true) {
+			if( imprimir.length()>1) {
+				imprimir+=", ";
+			}
+			imprimir += "Sumario de urina";
+		}
+		if(jaCadastrou[4] == true) {
+			if( imprimir.length()>1) {
+				imprimir+=", ";
+			}
+			imprimir += "Hemograma";
+		}
+		System.out.println("Exames cadastrados: "+imprimir+"]");
+	}
+	public static int menuCadastrarListaExames(Scanner sc) {
+		System.out.println("1- Glicose"
+				+ "\n2- Colesterol Total"
+				+ "\n3- Triglicerides"
+				+ "\n4- Sumario de urina"
+				+ "\n5- Hemograma"
+				+ "\nEscolha uma opção:");
+		int valreturn = sc.nextInt();
+		sc.nextLine();
+		return valreturn;
 	}
 }
