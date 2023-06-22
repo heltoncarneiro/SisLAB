@@ -29,6 +29,6 @@ public abstract class Bioquimica implements Exame {
 	}
 	public Bioquimica() {
 	}
-	public abstract String nome();
+	public abstract String imprimirNome();
 	public abstract String valoresReferencia();
 }

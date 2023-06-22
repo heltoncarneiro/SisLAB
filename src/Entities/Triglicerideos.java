@@ -1,6 +1,6 @@
 package Entities;
 
-public class Triglicerideos extends Bioquimica {
+public final class Triglicerideos extends Bioquimica {
 
 	public Triglicerideos(double resultado, String comentario) {
 		super(resultado, comentario);
@@ -15,19 +15,24 @@ public class Triglicerideos extends Bioquimica {
 	}
 
 	@Override
-	public String nome() {
+	public String imprimirNome() {
 		int val = 40 - (int)"Triglicerídeos".length()/2;
-		String espaço = "";
+		String espaco = "";
 		for (int i = 0; i< val; i++) {
-			espaço += " ";
+			espaco += " ";
 		}
-		return espaço + "Triglicerídeos";
+		return espaco + "Triglicerídeos";
 	}
 
 	@Override
+	public String exibirNome() {
+		// TODO Auto-generated method stub
+		return "Triglicerídeos";
+	}
+	@Override
 	public String ImprimirResultado() {
 		return "--------------------------------------------------------------------------------\n"
-				+ nome()
+				+ imprimirNome()
 				+ String.format("\n\nResultado: %.2f", getResultado()) + "mg/dl"
 				+ ".\n"+valoresReferencia()
 				+"\n\nObservação: "+ getComentario()+"\n";

@@ -1,36 +1,41 @@
 package Entities;
 
-public class Glicose extends Bioquimica {
+public final class Glicose extends Bioquimica {
 
 	public Glicose(double resultado, String comentario) {
-		super(resultado,comentario);
+		super(resultado, comentario);
 	}
+
 	public Glicose() {
 		super();
 	}
+
 	@Override
-	public String valoresReferencia(){
+	public String valoresReferencia() {
 		return "Valor de referência: 70 mg/dl a 100 mg/dl.";
 	}
 
 	@Override
-	public String nome() {
-		int val = 40 - (int)"Glicose de jejum".length()/2;
-		String espaço = "";
-		for (int i = 0; i< val; i++) {
-			espaço += " ";
+	public String exibirNome() {
+		// TODO Auto-generated method stub
+		return "Glicose de jejum";
+	}
+
+	@Override
+	public String imprimirNome() {
+		int val = 40 - (int) "Glicose de jejum".length() / 2;
+		String espaco = "";
+		for (int i = 0; i < val; i++) {
+			espaco += " ";
 		}
-		return espaço + "Glicose de jejum";
+		return espaco + "Glicose de jejum";
 	}
 
 	@Override
 	public String ImprimirResultado() {
-		return "--------------------------------------------------------------------------------\n"
-				+ nome()
-				+ String.format("\n\nResultado: %.2f", getResultado()) + "mg/dl"
-				+ ".\n"+valoresReferencia()
-				+"\n\nObservação: "+ getComentario()+"\n";
+		return "--------------------------------------------------------------------------------\n" + imprimirNome()
+				+ String.format("\n\nResultado: %.2f", getResultado()) + "mg/dl" + ".\n" + valoresReferencia()
+				+ "\n\nObservação: " + getComentario() + "\n";
 	}
 
-	
 }

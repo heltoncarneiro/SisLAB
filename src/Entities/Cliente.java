@@ -68,12 +68,11 @@ public class Cliente {
 	private static final DateFormat createFormat() {
 	    return new SimpleDateFormat("dd/MM/yyyy");
 	}
-	public Cliente(String nome, Date dataNascimento, String endereço, String cpf, ArrayList<Requisicao> históricoRequisições) {
+	public Cliente(String nome, Date dataNascimento, String endereço, String cpf) {
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.endereço = endereço;
 		this.cpf = cpf;
-		this.historicoRequisicoes = new ArrayList<>();;
 	}
 	public String ImprimirCliente() {
 		if(dataNascimento != null) {
