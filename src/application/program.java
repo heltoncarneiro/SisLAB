@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
+
 import Entities.Cliente;
 import Entities.ColesterolTotal;
 import Entities.Exame;
@@ -62,6 +63,33 @@ public class program {
 		sc.nextLine();
 		return valreturn;
 	}
+	public static void cadastraRequisicao(Scanner sc , SimpleDateFormat sdf,ArrayList<Requisicao> requisicoes,ArrayList<Medico> medicos,ArrayList<Cliente> clientes) {
+		int resposta;
+		ArrayList<Exame> exames = new ArrayList<>();
+		try {
+			System.out.println("1-Deseja cadastrar um novo cliente\n2-Cadastrar com cliente ja cadastrado\nQual opção:");
+			resposta = sc.nextInt();
+			sc.nextLine();
+			if(resposta == 1) {
+				cadastrarCliente(sc, sdf, clientes);
+			}else if(resposta == 2){
+				
+			}
+			System.out.println("1-Deseja cadastrar um novo médico\n2-Cadastrar com medico ja cadastrado\nQual opção:");
+			resposta = sc.nextInt();
+			sc.nextLine();
+			if(resposta == 1) {
+				cadastrarMedico(sc, sdf, medicos);
+			}else if(resposta == 2){
+				
+			}
+			exames = cadastraslistaExames(sc);
+			requisicoes.add(new Requisicao(clientes.get(-1), medicos.get(-1), exames));
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	public static void cadastrarCliente(Scanner sc , SimpleDateFormat sdf,ArrayList<Cliente> clientes) {
 		try {
 			System.out.println("Qual o nome do cliente:");
@@ -84,6 +112,37 @@ public class program {
 			}
 		}
 	}
+	public static Cliente procurarCliente(Scanner sc, ArrayList<Cliente> clientes) {
+		int resposta;
+		ArrayList<Cliente> clientes2 = new ArrayList<>();
+		System.out.println("1- Procurar por nome\n2- Procurar pelo cpf\nQual opção:");
+		resposta = sc.nextInt();
+		sc.nextLine();
+		if(resposta == 1) {
+			int count = 1;
+			System.out.println("Qual o nome:");
+			String procurarNome = sc.next().toLowerCase();
+			sc.nextLine();
+			for(int i=0;i<clientes.size();i++) {
+				if(clientes.get(i).getNome().toLowerCase().contains(procurarNome) == true){
+					System.out.println(count+"- "+clientes.get(i));
+					clientes2.add(clientes.get(i));
+					count++;
+				}
+			}
+			if(count >1 ) {
+				System.out.println("Qual opção deseja:");
+				int index = sc.nextInt();
+				sc.nextLine();
+				return clientes2.get(index);
+			}else {
+				System.out.println("Usuario não encontrado\nPressione Qualquer tecla para tentar procuarar outra vez\\nCaso deseje voltar para o menu digite \\\"S\\\"");
+			}
+			
+		}else if(resposta == 2) {
+			
+		}
+	}
 	public static void cadastrarMedico(Scanner sc , SimpleDateFormat sdf,ArrayList<Medico> medicos) {
 		try {
 			System.out.println("Qual o nome do medico:");
@@ -101,12 +160,13 @@ public class program {
 		}
 
 	}
-	public static void cadastraslistaExames(Scanner sc) {
+	public static ArrayList<Exame> cadastraslistaExames(Scanner sc) {
 		ArrayList<Exame> exames = new ArrayList<>();
 		try {
 			boolean[] jaCadastrou = {false,false,false,false,false};
-			int escolhaExames;
-			while(true) {
+			int escolhaExames = 0;
+			while(escolhaExames != 6) {
+				System.out.println("Quais exames deseja cadastrar:");
 				escolhaExames = menuCadastrarListaExames(sc);
 				switch (escolhaExames) {
 				case 1:
@@ -156,11 +216,13 @@ public class program {
 		}
 		catch (Exception e) {
 			System.out.println("Erro\n\nPressione Qualquer tecla para cadastrar os exames novamente\nCaso deseje voltar para o menu digite \"S\"");
+			sc.nextLine();
 			if(sc.next().toLowerCase().charAt(0) != 's') {
 				sc.nextLine();
 				cadastraslistaExames(sc);
 			}
 		}
+		return exames;
 	}
 	public static void cadastrados(boolean[] jaCadastrou){
 		String imprimir = "[";
@@ -202,6 +264,7 @@ public class program {
 				+ "\n3- Triglicerides"
 				+ "\n4- Sumario de urina"
 				+ "\n5- Hemograma"
+				+ "\n6- Sair"
 				+ "\nEscolha uma opção:");
 		int valreturn = sc.nextInt();
 		sc.nextLine();
