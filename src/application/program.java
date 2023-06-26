@@ -38,14 +38,14 @@ public class program {
 					Medico medico = Medico.cadastrarMedico(sc, medicos, null, null);
 					if(medico != null) {
 						medicos.add(medico);
-						System.out.println("Medico:"+medico.getNome()+". Cadastrado");
+						System.out.println("Medico: "+medico.getNome()+". Cadastrado");
 					}
 					break;
 				case 3:
 					Requisicao requisicao = Requisicao.cadastraRequisicao(sc, sdf, requisicaos, medicos, clientes);
 					if(requisicao != null) {
 						requisicaos.add(requisicao);
-						System.out.println("Requisicao"+requisicao.getCliente().getNome()+". Cadastrada");
+						System.out.println("Requisicao de "+requisicao.getCliente().getNome()+". Cadastrada");
 					}
 					break;
 				case 4:
@@ -77,8 +77,10 @@ public class program {
 						}else {
 							Imprimir.imprimitTxt(sc, requisicaos.get(id-1).imprimirRequisicao());
 						}
+						break;
 					}catch (Exception e) {
 						System.out.println("Erro");
+						break;
 					}
 				case 6:
 					System.out.println("Requisições cadastradas:");

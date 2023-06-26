@@ -27,6 +27,8 @@ public final class Triglicerideos extends Bioquimica {
 	}
 	@Override
 	public void digitarExame(Scanner sc) {
+		System.out.println("--------------------------------------------------------------------------------\n"
+				+ exibirNome()+"\n");
 		System.out.println("Qual o resultado da Triglicerídeos:");
 		setResultado(sc.nextDouble());
 		sc.nextLine();

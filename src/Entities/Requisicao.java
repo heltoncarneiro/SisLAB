@@ -44,7 +44,13 @@ public class Requisicao {
 	} 
 	public void digitarListaExames(Scanner sc){
 		for(Exame i : Exames) {
+			try {
 			i.digitarExame(sc);
+			}catch (Exception e) {
+				System.out.println("Erro na digitação, digite qualquer tecla para tentar outra vez");
+				sc.nextLine();
+				i.digitarExame(sc);
+			}
 		}
 	}
 	public String imprimirRequisicao() {
@@ -105,7 +111,7 @@ public class Requisicao {
 			exames = cadastraslistaExames(sc);
 			if(cliente != null && medico != null && exames != null ) {
 				Requisicao requisicao = new Requisicao(cliente, medico, exames);
-				cliente.addHistoricoRequisicoes(requisicao);
+				clientes.get(clientes.size()-1).addHistoricoRequisicoes(requisicao);
 				return requisicao;
 			}else {
 				throw new exceptionVoltarMenu();
@@ -117,6 +123,7 @@ public class Requisicao {
 			return cadastraRequisicao(sc, sdf, requisicoes, medicos, clientes);
 		}catch (Exception e) {
 			System.out.println("ERRO");
+			System.out.println(e.getMessage());
 			return null;
 		}
 	}

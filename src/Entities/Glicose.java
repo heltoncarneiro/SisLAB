@@ -35,6 +35,8 @@ public final class Glicose extends Bioquimica {
 
 	@Override
 	public void digitarExame(Scanner sc) {
+		System.out.println("--------------------------------------------------------------------------------\n"
+				+ exibirNome()+"\n");
 		System.out.println("Qual o resultado da Glicose:");
 		setResultado(sc.nextDouble());
 		sc.nextLine();

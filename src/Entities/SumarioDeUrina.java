@@ -172,7 +172,8 @@ public final class SumarioDeUrina implements Exame {
 	@Override
 	public void digitarExame(Scanner sc) {
 		int quant;
-		System.out.println("Qual a densidade:");
+		System.out.println("--------------------------------------------------------------------------------\n"
+				+ nomeImprimir()+"\n"+"Qual a densidade:");
 		this.densidade = sc.next();
 		sc.nextLine();
 		System.out.println("Qual o ph:");
@@ -273,7 +274,7 @@ public final class SumarioDeUrina implements Exame {
 		String [] nomes = {"Proteina:","Hemacias:","Glicose:","leucocitos:","Cetonas:","Urobilinogenio:","Bilirrubina:","Nitrito:"};
 		String [] valorReferecia = {"Ausente","Ausente","Ausente","Ausente","Ausente","Ausente","Normal","Negativo"};
 		String [] resultado = {getProteina(),getHemacias(),getGlicose(),getleucocitos(),getCetonas(),getUrobilinogenio(),getBilirrubina(),getNitrito()};
-		String espaco1; String espaco2; String imprimir = "\nEXAME QUÃ�MICO:\n\n";
+		String espaco1; String espaco2; String imprimir = "\nEXAME QUÍMICO:\n\n";
 		for(int i = 0; i<8; i++) {
 			espaco1 = "";
 			espaco2 = "";
@@ -316,7 +317,7 @@ public final class SumarioDeUrina implements Exame {
 				+ nomeImprimir()+"\n\n"
 				+ imprimirExameFisico()
 				+ imprimirExameQuimico()
-				+ imprimirSedimentoscopia();
+				+ imprimirSedimentoscopia()+"\n";
 	}
 
 }

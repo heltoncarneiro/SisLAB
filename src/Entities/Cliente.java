@@ -19,7 +19,7 @@ public class Cliente {
 	private Date dataNascimento;
 	private String endereco;
 	private String cpf;
-	private ArrayList<Requisicao> historicoRequisicoes;
+	private ArrayList<Requisicao> historicoRequisicoes = new ArrayList<>();;
 	public String getNome() {
 		return nome;
 	}
