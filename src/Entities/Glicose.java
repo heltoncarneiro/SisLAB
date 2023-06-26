@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.Scanner;
+
 public final class Glicose extends Bioquimica {
 
 	public Glicose(double resultado, String comentario) {
@@ -32,10 +34,19 @@ public final class Glicose extends Bioquimica {
 	}
 
 	@Override
+	public void digitarExame(Scanner sc) {
+		System.out.println("Qual o resultado da Glicose:");
+		setResultado(sc.nextDouble());
+		sc.nextLine();
+		System.out.println("Algum comentário do resultado:");
+		setComentario(sc.nextLine());
+	}
+
+	@Override
 	public String ImprimirResultado() {
 		return "--------------------------------------------------------------------------------\n" + imprimirNome()
 				+ String.format("\n\nResultado: %.2f", getResultado()) + "mg/dl" + ".\n" + valoresReferencia()
-				+ "\n\nObservação: " + getComentario() + "\n";
+				+ "\n\nObservação: " + getComentario()+"\n";
 	}
 
 }

@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.Scanner;
+
 public final class SumarioDeUrina implements Exame {
 	private String densidade = "não informada";
 	private String ph = "não informado";
@@ -168,6 +170,72 @@ public final class SumarioDeUrina implements Exame {
 	}
 
 	@Override
+	public void digitarExame(Scanner sc) {
+		int quant;
+		System.out.println("Qual a densidade:");
+		this.densidade = sc.next();
+		sc.nextLine();
+		System.out.println("Qual o ph:");
+		this.ph = sc.next();
+		sc.nextLine();
+		System.out.println("Quantas \"+\" de proteina:");
+		quant = sc.nextInt();
+		sc.nextLine();
+		if(quant > 0) {
+			this.proteina = quantidadeCruz(quant);
+		}
+		System.out.println("Quantas \"+\" de hemácias:");
+		quant = sc.nextInt();
+		sc.nextLine();
+		if(quant > 0) {
+			this.hemacias = quantidadeCruz(quant);
+		}
+		System.out.println("Quantas \"+\" de glicose:");
+		quant = sc.nextInt();
+		sc.nextLine();
+		if(quant > 0) {
+			this.glicose = quantidadeCruz(quant);
+		}
+		System.out.println("Quantas \"+\" de leucocitos:");
+		quant = sc.nextInt();
+		sc.nextLine();
+		if(quant > 0) {
+			this.leucocitos = quantidadeCruz(quant);
+		}
+		System.out.println("Quantas \"+\" de corpos cetônicos:");
+		quant = sc.nextInt();
+		sc.nextLine();
+		if(quant > 0) {
+			this.cetonas = quantidadeCruz(quant);
+		}
+		System.out.println("Quantas \"+\" de urobilinogênio:");
+		quant = sc.nextInt();
+		sc.nextLine();
+		if(quant > 0) {
+			this.urobilinogenio = quantidadeCruz(quant);
+		}
+		System.out.println("Quantas \"+\" de nitrito:");
+		quant = sc.nextInt();
+		sc.nextLine();
+		if(quant > 0) {
+			this.nitrito = quantidadeCruz(quant);
+		}
+		System.out.println("Quantidade de piocitos:");
+		this.piocitos = sc.nextLine();
+		System.out.println("Quantidade de células epiteliais:");
+		this.celulasEpiteliais = sc.nextLine();
+		System.out.println("Quantidade de bactérias:");
+		this.bacterias = sc.nextLine();
+
+	}
+	public String quantidadeCruz(int quantCruz) {
+		String cruz = "";
+		for(int i = quantCruz; i>0; i--) {
+			cruz += "+";
+		}
+		return cruz;
+	}
+	@Override
 	public String exibirNome() {
 		return "Sumario de Urina";
 	}
@@ -227,7 +295,7 @@ public final class SumarioDeUrina implements Exame {
 		String [] resultado = {getPiocitos(),getCelulasEpiteliais(),getBacterias()};
 		String espaco1; String espaco2; String imprimir = "\nSEDIMENTOSCOPIA:\n\n";
 		int valRound;int valFloor ;
-		for(int i = 0; i<2; i++) {
+		for(int i = 0; i<3; i++) {
 			espaco1 = "";
 			espaco2 = "";
 			valRound = (int) (40-nomes[i].length()- Math.round(resultado[i].length() /2.0));

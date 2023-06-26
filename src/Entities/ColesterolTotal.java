@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.Scanner;
+
 public final class ColesterolTotal extends Bioquimica {
 	
 	public ColesterolTotal(double resultado, String comentario) {
@@ -22,6 +24,14 @@ public final class ColesterolTotal extends Bioquimica {
 			espaco += " ";
 		}
 		return espaco + "Colesterol Total";
+	}
+	@Override
+	public void digitarExame(Scanner sc) {
+		System.out.println("Qual o resultado da Colesterol Total:");
+		setResultado(sc.nextDouble());
+		sc.nextLine();
+		System.out.println("Algum comentário do resultado:");
+		setComentario(sc.nextLine());
 	}
 	@Override
 	public String exibirNome() {

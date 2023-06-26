@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.Scanner;
+
 public final class Triglicerideos extends Bioquimica {
 
 	public Triglicerideos(double resultado, String comentario) {
@@ -23,7 +25,14 @@ public final class Triglicerideos extends Bioquimica {
 		}
 		return espaco + "Triglicerídeos";
 	}
-
+	@Override
+	public void digitarExame(Scanner sc) {
+		System.out.println("Qual o resultado da Triglicerídeos:");
+		setResultado(sc.nextDouble());
+		sc.nextLine();
+		System.out.println("Algum comentário do resultado:");
+		setComentario(sc.nextLine());
+	}
 	@Override
 	public String exibirNome() {
 		// TODO Auto-generated method stub
